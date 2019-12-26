@@ -1,0 +1,62 @@
+﻿<Window x:Class="HostsEditor.Areas.MainWindow.Views.MainWindowV"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HostsEditor.Areas.MainWindow.Views"
+        mc:Ignorable="d"
+        Title="HostsEditor" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+            <!--<RowDefinition Height="60"/>-->
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Column="0" Grid.Row="0">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="Host" />
+                <CheckBox IsChecked="{Binding IsSelectAllHosts}" Command="{Binding SelectAllHostsCmd}" Content="Zaznacz wszystkie" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding HostsList}" DockPanel.Dock="Top">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <CheckBox Content="{Binding Url}" IsChecked="{Binding IsSelected}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Bottom"  HorizontalAlignment="Center" DockPanel.Dock="Bottom" Height="50">
+                <Button Command="{Binding MoveToImportCmd}" Content="Przenieś do Import" Width="120" Margin="10" HorizontalAlignment="Right" />
+                <Button Command="{Binding DeleteFromHostsCmd}" Content="Usuń zaznaczone" Width="100" Margin="10"/>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Grid.Column="1">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="Import"/>
+                <CheckBox IsChecked="{Binding IsSelectAllImport}" Command="{Binding SelectAllImportCmd}" Content="Zaznacz wszystkie" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </StackPanel>
+            <ListView ItemsSource="{Binding ImportList}" DockPanel.Dock="Top">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <CheckBox Content="{Binding Url}" IsChecked="{Binding IsSelected}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Bottom"  HorizontalAlignment="Center" DockPanel.Dock="Bottom" Height="50">
+                <Button Command="{Binding MoveToHostsCmd}" Content="Przenieś do Hosts" Width="120" Margin="10" HorizontalAlignment="Right" />
+                <Button Command="{Binding DeleteFromImportCmd}" Content="Usuń zaznaczone" Width="100" Margin="10"/>
+            </StackPanel>
+        </DockPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"  HorizontalAlignment="Center">
+            <Button Command="{Binding SaveCmd}" Content="Zapisz" Width="100" Margin="10"/>
+            <Button Command="{Binding AbortCmd}" Content="Anuluj" Width="100" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
